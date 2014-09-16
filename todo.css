@@ -8,5 +8,5 @@
 	background-color: blue;
 	}
 .done {
-	strike
+	text-decoration: line-through;
 	}
