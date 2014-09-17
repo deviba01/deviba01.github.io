@@ -1,15 +1,18 @@
 .high {
 	background-color: red;
+	width: 120;
 	}
 .med {
 	background-color: yellow;
+	width: 120;
 	}
 .low {
-	background-color: blue;
+	background-color: lightblue;
+	width: 120;
 	}
 .done {
 	text-decoration: line-through;
 
-	list-style: url("http://lasgalerasdr.com/wp-content/uploads/2013/01/check-mark1.jpg" height= 100 width=100);
+	list-style-image: url("http://sustainability.sbp360.com/wp-content/uploads/CheckMark.png");
 	}
 	
