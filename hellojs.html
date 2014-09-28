@@ -1,0 +1,23 @@
+<html>
+<body>
+
+<script type="text/javascript">
+x = 11;
+counter = x+1
+
+hellofunc = function() {
+   counter = counter +1
+   mySpan = document.createElement('p');
+   mySpan.innerHTML = "HELLO WORLD!!!"+ counter;
+   mySpan.style.color = "red";
+   document.body.appendChild(mySpan);
+  
+   }
+
+</script>
+
+<button onclick="hellofunc();">Click me</button>
+
+
+</body>
+</html>
