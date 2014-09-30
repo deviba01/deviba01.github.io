@@ -1,0 +1,31 @@
+<html>
+
+	<head>Color Change </head><br>
+	<script type="text/javascript">
+					colorfunc = function() {
+		
+		R = document.getElementById('red').value;
+		G = document.getElementById('green').value;
+		B = document.getElementById('blue').value;
+
+		rgbColor= "rgb("+R+","+G+","+B+")";
+		document.body.style.backgroundColor=rgbColor;
+   }
+   </script>
+	<body>
+	
+		<label for="red"> Red:</label>
+		<input type="text" id="red" name="Red" value=0><br>
+		<label for="green"> Green:</label>
+		<input type="text" id="green" name="Green" value=0><br>
+		<label for="blue"> Blue:</label>
+		<input type="text" id="blue" name="Blue" value=0><br>
+
+		<button onclick="colorfunc();">Change Color</button>
+
+		
+
+		
+	</body>
+</html>
+
