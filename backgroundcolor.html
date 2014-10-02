@@ -9,20 +9,28 @@
 			    	R = document.getElementById('red').value;	
 			    	}
 				if (document.getElementById('green').value < 0){
-						alert("Invalid Entry")
+						alert("Invalid Entry");
 			    }else{
 			    	G = document.getElementById('green').value;
+			    	
 			    	}
 			    if (document.getElementById('blue').value < 0){
-						alert("Invalid Entry")
+						alert("Invalid Entry");
 			    }else{	
 					B = document.getElementById('blue').value;
+					
 					}
 		
 		 
 		rgbColor= "rgb("+R+","+G+","+B+")";
 		document.body.style.backgroundColor=rgbColor;
+		
    }
+   		tablefunc = function(){
+   		R = document.getElementById('red').value;	
+   		var t= document.createTextNode("red")
+   		document.body.apendChild(t);
+   		}
    </script>
 	<body>
 	
@@ -34,7 +42,8 @@
 		<input type="text" id="blue" name="Blue" value=0 onkeyup="colorfunc()"><br>
 		
 		
-		<button onclick="colorfunc();">Change Color</button>
+		<button onclick="colorfunc(); tablefun();">Change Color</button><br>
+		
 
 		
 
