@@ -1,0 +1,24 @@
+<style>
+         header {
+             position: fixed;
+             background-color: yellow;
+             width: 100%;
+             height: 7%;
+         }
+         
+         section {
+             float: left;
+             width: 100%;
+             height: 85%;
+             background-color: lightgreen;
+         }
+         footer {
+             clear: both;
+             background-color: yellow;
+             height: 8%;
+         }
+         body {
+             background-color: white;
+             margin: 0px;
+         }
+ </style>

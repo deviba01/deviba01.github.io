@@ -1,0 +1,31 @@
+<script>
+addfunc = function(){
+	node = document.createElement("LI");
+	textnode= document.getElementById('NewTask').value;
+	node.appendChild(textnode)
+	document.getElementById("myList").appendChild(node);  
+   		           
+}
+
+</script>
+
+<html>
+<link rel ="stylesheet" href="interactivetodo.css" type="text/css" />
+<body>
+<header>
+	<h2>ToDo List</h2>
+</header>
+
+<section>
+	<ul id ="myList">
+	<input type="checkbox"> 
+	</ul>
+</section>
+
+<footer>
+	<label for="NewTask"> New Task:</label>
+	<input type="text" id="NewTask" name="New Task" value=""><br>
+	<button onclick="addfunc();">Add</button>
+</footer>
+</body>
+</html>

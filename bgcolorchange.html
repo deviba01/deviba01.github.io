@@ -35,7 +35,7 @@
    }
    		NewRow = 1
    		tablefunc = function(){
-   		  var table = document.getElementById('myTable');
+   		   var table = document.getElementById('myTable');
    		   var row = table.insertRow(NewRow);
     	   var cell1 = row.insertCell(0);
     	   var cell2 = row.insertCell(1);
@@ -44,19 +44,20 @@
            cell2.innerHTML = document.getElementById('green').value;
            cell3.innerHTML = document.getElementById('blue').value;
            NewRow = NewRow+1
+          
 }
    </script>
 	<body>
 	
 		<label for="red"> Red:</label>
-		<input type="text" id="red" name="Red" value=0 onkeyup="colorfunc()"><br>
+		<input type="range" id="red" name="Red" value=0 onmousemove="colorfunc(); tablefunc();"><br>
 		<label for="green"> Green:</label>
-		<input type="text" id="green" name="Green" value=0 onkeyup="colorfunc()"><br>
+		<input type="range" id="green" name="Green" value=0 onmousemove="colorfunc(); tablefunc();"><br>
 		<label for="blue"> Blue:</label>
-		<input type="text" id="blue" name="Blue" value=0 onkeyup="colorfunc()"><br>
+		<input type="range" id="blue" name="Blue" value=0 onmousemove="colorfunc(); tablefunc();"><br>
 		
 		
-		<button onclick="colorfunc(); tablefunc();">Change Color</button><br>
+		<button onclick="colorfunc(); tablefunc();">Click to add values to the table</button><br>
 		<table id ="myTable">
 			<tr>
 			<td>Red</td>

@@ -5,49 +5,74 @@
 		colorfunc = function() {
 				if (document.getElementById('red').value < 0){
 						alert("Invalid Entry");
+			    }else if(document.getElementById('red').value > 255){
+			    		alert("Invalid Entry")
 			    }else{
 			    	R = document.getElementById('red').value;	
+				
 			    	}
 				if (document.getElementById('green').value < 0){
-						alert("Invalid Entry");
+						alert("Invalid Entry")
+			    }else if(document.getElementById('green').value > 255){
+			    		alert("Invalid Entry")
 			    }else{
 			    	G = document.getElementById('green').value;
 			    	
 			    	}
 			    if (document.getElementById('blue').value < 0){
-						alert("Invalid Entry");
-			    }else{	
+						alert("Invalid Entry")
+			    }else if(document.getElementById('blue').value > 255){
+			    		alert("Invalid Entry")
+				}else{	
 					B = document.getElementById('blue').value;
 					
 					}
 		
 		 
-		rgbColor= "rgb("+R+","+G+","+B+")";
-		document.body.style.backgroundColor=rgbColor;
-		
-   }
-   		tablefunc = function(){
-   		R = document.getElementById('red').value;	
-   		var t= document.createTextNode("red")
-   		document.body.apendChild(t);
-   		}
+				rgbColor= "rgb("+R+","+G+","+B+")";
+				document.body.style.backgroundColor=rgbColor;
+	
+ 			if(mdown==1){
+   		          mytable = document.getElementById("myTable");
+   		          row = document.createElement("tr");
+   		          r= document.createElement("td");
+   		          r.innerHtml = red;
+   		          row.appendChild(r);
+   		           g= document.createElement("td");
+   		          g.innerHtml = green;
+   		          row.appendChild(g);
+   		           b= document.createElement("td");
+   		          b.innerHtml = blue;
+   		          row.appendChild(b);
+   		          row.style.backgroundColor = rgbColor;
+   		          mytable.appendChild(row);
+   		          }
+   		   }
+   		                    
+         
+
    </script>
 	<body>
 	
 		<label for="red"> Red:</label>
-		<input type="text" id="red" name="Red" value=0 onkeyup="colorfunc()"><br>
+		<input type="text" id="red" name="Red" value=0 onkeyup="colorfunc();"><br>
 		<label for="green"> Green:</label>
-		<input type="text" id="green" name="Green" value=0 onkeyup="colorfunc()"><br>
+		<input type="text" id="green" name="Green" value=0 onkeyup="colorfunc();"><br>
 		<label for="blue"> Blue:</label>
-		<input type="text" id="blue" name="Blue" value=0 onkeyup="colorfunc()"><br>
+		<input type="text" id="blue" name="Blue" value=0 onkeyup="colorfunc();"><br>
 		
 		
-		<button onclick="colorfunc(); tablefun();">Change Color</button><br>
-		
+		<button onclick="colorfunc();">Click to add values to the table</button><br>
+		<table id ="myTable">
+			<tr>
+			<td>Red</td>
+			<td>Green</td>
+			<td>Blue</td>
+			</tr>
+		</table>
 
 		
 
 		
 	</body>
 </html>
-

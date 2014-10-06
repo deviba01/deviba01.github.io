@@ -1,0 +1,46 @@
+<html>
+
+	<head>Color Change </head><br>
+	<script type="text/javascript">
+		colorfunc = function() {
+				if (document.getElementById('red').value < 0){
+						alert("Invalid Entry");
+			    }else if(document.getElementById('red').value > 255){
+			    		alert("Invalid Entry")
+			    }else{
+			    	R = document.getElementById('red').value;	
+				
+			    	}
+			    	
+			    	
+			
+	
+ 			if{
+   		          mytable = document.getElementById("myTable");
+   		          row = document.createElement("tr");
+   		          r= document.createElement("td");
+   		          r.innerHtml = red;
+   		          row.appendChild(r);
+   		 
+   		          }
+   		   }
+   		                    
+         
+
+   </script>
+	<body>
+	
+		<label for="red"> Red:</label>
+		<input type="text" id="red" name="Red" value=0 onkeyup="colorfunc();"><br>
+		
+		
+		<button onclick="colorfunc();">Click to add values to the table</button><br>
+		<table id ="myTable">
+	
+		</table>
+
+		
+
+		
+	</body>
+</html>
