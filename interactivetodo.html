@@ -1,31 +1,50 @@
+
+<html>
+
 <script>
-addfunc = function(){
-	node = document.createElement("LI");
-	textnode= document.getElementById('NewTask').value;
-	node.appendChild(textnode)
-	document.getElementById("myList").appendChild(node);  
-   		           
-}
+function addfunc() {
+
+            table = document.getElementById('mytable');
+
+          	rowCount = table.rows.length;
+          	row = table.insertRow(rowCount);
+
+         	newtask=document.getElementById('NewTask').value;
+			
+            NewTask = document.createElement("table");
+            NewTask.type = ("tr");       
+            NewTask.value= newtask;
+            row.insertCell().appendChild(NewTask);
+            
+ 			
+           	check = document.createElement("input");
+            check.type = "checkbox";
+            row.insertCell().appendChild(check);
+			
+
+       }
+
 
 </script>
 
-<html>
 <link rel ="stylesheet" href="interactivetodo.css" type="text/css" />
 <body>
 <header>
-	<h2>ToDo List</h2>
+	
 </header>
 
 <section>
-	<ul id ="myList">
-	<input type="checkbox"> 
-	</ul>
+<h2>To Do List</h2>
+	<table id="mytable" >
+        </table>
 </section>
 
 <footer>
 	<label for="NewTask"> New Task:</label>
-	<input type="text" id="NewTask" name="New Task" value=""><br>
+	<input type="text" id="NewTask" value=""><br>
 	<button onclick="addfunc();">Add</button>
 </footer>
 </body>
+
+    
 </html>

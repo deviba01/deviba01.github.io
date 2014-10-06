@@ -1,46 +1,48 @@
+
 <html>
 
-	<head>Color Change </head><br>
-	<script type="text/javascript">
-		colorfunc = function() {
-				if (document.getElementById('red').value < 0){
-						alert("Invalid Entry");
-			    }else if(document.getElementById('red').value > 255){
-			    		alert("Invalid Entry")
-			    }else{
-			    	R = document.getElementById('red').value;	
-				
-			    	}
-			    	
-			    	
-			
-	
- 			if{
-   		          mytable = document.getElementById("myTable");
-   		          row = document.createElement("tr");
-   		          r= document.createElement("td");
-   		          r.innerHtml = red;
-   		          row.appendChild(r);
-   		 
-   		          }
-   		   }
-   		                    
-         
+<script>
+  function addfunc(myTable) {
 
-   </script>
-	<body>
-	
-		<label for="red"> Red:</label>
-		<input type="text" id="red" name="Red" value=0 onkeyup="colorfunc();"><br>
-		
-		
-		<button onclick="colorfunc();">Click to add values to the table</button><br>
-		<table id ="myTable">
-	
-		</table>
+            var table = document.getElementById(myTable);
 
-		
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
 
-		
-	</body>
+          var b=document.getElementById('NewTask').value;
+ var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "text";
+            element1.style.width="100%";
+            element1.name = "txtbox[]";
+            element1.value=b;
+                   cell1.appendChild(element1);
+ var cell2 = row.insertCell(1);
+            var element2 = document.createElement("input");
+            element2.type = "checkbox";
+            element2.name="chkbox[]";
+            cell2.appendChild(element2);
+document.getElementById('NewTask').value=" ";
+document.getElementById('pTotal').innerHTML= rowCount + 1;
+       }
+</script>
+
+<link rel ="stylesheet" href="interactivetodo.css" type="text/css" />
+<body>
+<header>
+	
+</header>
+
+<section>
+<h2>To Do List</h2>
+	<table id ="mytable">
+	</table>
+</section>
+
+<footer>
+	<label for="NewTask"> New Task:</label>
+	<input type="text" id="NewTask" value=""><br>
+	<button onclick="addfunc(mytable);">Add</button>
+</footer>
+</body>
 </html>
