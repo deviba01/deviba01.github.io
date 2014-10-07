@@ -3,24 +3,17 @@
 
 <script>
 function addfunc() {
-
-            table = document.getElementById('mytable');
-
-          	rowCount = table.rows.length;
-          	row = table.insertRow(rowCount);
-
-         	newtask=document.getElementById('NewTask').value;
-			
-            NewTask = document.createElement("table");
-            NewTask.type = ("tr");       
-            NewTask.value= newtask;
-            row.insertCell().appendChild(NewTask);
-            
- 			
-           	check = document.createElement("input");
+            Newrow = document.createElement("TR");
+            task= document.getElementById('NewTask').value;
+            task.innerHtml;
+            check = document.createElement("input");
             check.type = "checkbox";
-            row.insertCell().appendChild(check);
-			
+            Newrow.appendChild(check);
+            x = document.createTextNode(task);
+            Newrow.appendChild(x);
+
+            document.getElementById("mytable").appendChild(Newrow);
+            document.getElementById('NewTask').value=""
 
        }
 
@@ -35,16 +28,19 @@ function addfunc() {
 
 <section>
 <h2>To Do List</h2>
-	<table id="mytable" >
-        </table>
-</section>
+    <table id = "mytable">
+    </table>
+    </section>
 
 <footer>
 	<label for="NewTask"> New Task:</label>
 	<input type="text" id="NewTask" value=""><br>
+
 	<button onclick="addfunc();">Add</button>
 </footer>
 </body>
 
+    
+</html>
     
 </html>
