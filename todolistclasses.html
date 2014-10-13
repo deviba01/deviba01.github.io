@@ -21,36 +21,16 @@ localSave = function(){
 				}
 function addfunc() {
             Newrow = document.createElement("TR");
+            
             task= document.getElementById('NewTask').value;
             task.innerHtml;
-            project = document.getElementById('ProjectName').value;
-            project.innerHtml;
-            date = document.getElementById('DueDate').value;
-            date.innerHtml;
-            pri = document.getElementById('priority').value;
-            pri.innerHtml;
             check = document.createElement("input");
             check.type = "checkbox";
             Newrow.appendChild(check);
             x = document.createTextNode(task);
-            y = document.createTextNode(project);
-            z = document.createTextNode(date);
-            w = document.createTextNode("---------");
-            b = document.createTextNode("---------");
-            c = document.createTextNode("---------");
-            v = document.createTextNode(pri)
-            Newrow.appendChild(y);
-            Newrow.appendChild(b);
             Newrow.appendChild(x);
-            Newrow.appendChild(w);
-            Newrow.appendChild(z);
-            Newrow.appendChild(c);
-            Newrow.appendChild(v);
             document.getElementById("mytable").appendChild(Newrow);
-            document.getElementById('NewTask').value="";
-            document.getElementById('ProjectName').value="";
-            document.getElementById('DueDate').value = "";
-            
+            document.getElementById('NewTask').value=""
             
     		check.onclick = doneTask;
     		
@@ -94,18 +74,13 @@ function savefunc(){
     </section>
 
 <footer>
-	<label for= "ProjectName"> Project Name:</label>
-	<input type="text" id ="ProjectName" value ="">
 	<label for="NewTask"> New Task:</label>
 	<input type="text" id="NewTask" value="">
 	<select id ="priority">
 	<option>High</option>
 	<option>Medium</option>
 	<option>Low</option>
-	</select>
-	<label for="DueDate"> Due Date:</label>
-	<input type="text" id="DueDate" value="">
-	<br>
+	</select><br>
 	<button onclick="addfunc();">Add</button>
 </footer>
 </body>
