@@ -4,111 +4,60 @@
 <script>
 doneTask = function(){
 		this.parentNode.className ="done"
-		localSave();
 		}
-localSave = function(){
-			res =[]
-			var i;
-			allEntries = document.querySelectorAll('tr')
-			for(i=0; i<allEntries.length;i++){
-			    if(allEntries[i].className != "done"){
-				res.push(allEntries[i].innerText);
-				}
-				}
-				console.log(res)
-				//alert(JSON.stringify(res))
-				localStorage.setItem("todoDatabase", JSON.stringify(res))
-				}
+		
+task = function(name,project,priority,date){
+			this.TaskName = name;
+			this.ProjectName = project;
+			this.priority = priority;
+			this.DueDate = date;
+			}
+newT = new Task(name, project, priority, date)
+			document.getElementById('NewTask').value = name
+			document.getElementById('ProjectName').value = project
+			document.getElementById('DueDate').value = date
+			document.getElementById('priority').value = priority
+			
+TaskList = []
+TaskList.push(newT)
+localStorage.setItem("todoDatabase", JSON.stringify(TaskList))
 
-function addfunc() {
-            allprojects = document.querySelectorAll('#ProjectName');
-            for(i=0; i<allprojects.length; i++){
-            	if(allprojects[allprojects.length]==allprojects[i]){
-            Newrow = document.createElement("TR");
-            newcol = document.createElement("TD");
-            prioritycol = document.createElement("TD");
-            task= document.getElementById('NewTask').value;
-            task.innerHtml;
-            //project = document.getElementById('ProjectName').value;
-            //project.innerHtml;
-            date = document.getElementById('DueDate').value;
-            date.innerHtml;
-            pri = document.getElementById('priority').value;
-            pri.innerHtml;
-            check = document.createElement("input");
-            check.type = "checkbox";
-            Newrow.appendChild(check);
-            x = document.createTextNode(task);
-            //y = document.createTextNode(project);
-            z = document.createTextNode(date);
-            v = document.createTextNode(pri)
-            Newrow.appendChild(y);
-            newcol.appendChild(x);
-            Newrow.appendChild(newcol); 
-            prioritycol.appendChild(z);            
-            Newrow.appendChild(prioritycol)
-            Newrow.appendChild(v);  
-                  
-            allprojects[i].appendChild(Newrow);
-            document.getElementById('NewTask').value="";
+display = function(newT){
+			allprojects = document.querySelectorAll('#ProjectName')
+			for(i=0; i<TaskList.length; i++){
+				for(m=0; m<allprojects.lenght;i++){
+				if(TaskList[i].project == allprojects[i]){
+				    Subrow = document.createElement("LI")
+				    check = document.createElement("input");
+				    check.type = "checkbox";
+				    subrow.appendChild(check);
+					Subrow.appendChild(Tasklist[i].name)
+					Subrow.appendChild(Tasklist[i].date)
+					Subrow.appendChild(Tasklist[i].priority)
+					allprojects[i].appendChild(Subrow)
+				}else{
+				    Newrow = document.createElement("LI")
+				    check = document.createElement("input");
+				    check.type = "checkbox";
+				    Newrow.appendChild(check);
+				    Newrow.appendChild(Tasklist[i].name)
+					Newrow.appendChild(Tasklist[i].name)
+					Newrow.appendChild(Tasklist[i].date)
+					Newrow.appendChild(Tasklist[i].priority)
+					document.getElementById("mytable").appendChild(Newrow);
+					}
+					}
+					}
+			document.getElementById('NewTask').value="";
             document.getElementById('ProjectName').value="";
             document.getElementById('DueDate').value = "";
-            }
-            else{         	
-            	
-            Newrow = document.createElement("TR");
-            newcol = document.createElement("TD");
-            prioritycol = document.createElement("TD");
-            task= document.getElementById('NewTask').value;
-            task.innerHtml;
-            project = document.getElementById('ProjectName').value;
-            project.innerHtml;
-            date = document.getElementById('DueDate').value;
-            date.innerHtml;
-            pri = document.getElementById('priority').value;
-            pri.innerHtml;
-            check = document.createElement("input");
-            check.type = "checkbox";
-            Newrow.appendChild(check);
-            x = document.createTextNode(task);
-            y = document.createTextNode(project);
-            z = document.createTextNode(date);
-            v = document.createTextNode(pri)
-            Newrow.appendChild(y);
-            newcol.appendChild(x);
-            Newrow.appendChild(newcol); 
-            prioritycol.appendChild(z);            
-            Newrow.appendChild(prioritycol)
-            Newrow.appendChild(v);  
-                  
-            document.getElementById("mytable").appendChild(Newrow);
-            document.getElementById('NewTask').value="";
-            document.getElementById('ProjectName').value="";
-            document.getElementById('DueDate').value = "";
-            
-            
-    		check.onclick = doneTask; 		
-            localSave();
-       }
-       }
+    		check.onclick = doneTask;
+    		}
+    		
 function savefunc(){
 			
-			w = JSON.parse(localStorage.getItem("todoDatabase"));
-			
-			
-			for(var i = 0; i< w.length;i++){
-				var todoItem = w[i];
-				Newrow = document.createElement("TR");
-            	task= todoItem;
-            	task.innerHtml;
-            	check = document.createElement("input");
-            	check.type = "checkbox";
-            	Newrow.appendChild(check);
-            	x = document.createTextNode(task);
-            	Newrow.appendChild(x);
-            	document.getElementById("mytable").appendChild(Newrow);
-            	check.onclick=doneTask;
-                       	}
+			TaskList = JSON.parse(localStorage.getItem("todoDatabase"));
+			display(TaskList);
             
             	}          	
 				
@@ -124,8 +73,8 @@ function savefunc(){
 
 <section>
 
-    <table id = "mytable">
-    </table>
+    <ul id = "mytable">
+    </ul>
     </section>
 
 <footer>
@@ -141,7 +90,7 @@ function savefunc(){
 	<label for="DueDate"> Due Date:</label>
 	<input type="text" id="DueDate" value="">
 	<br>
-	<button onclick="addfunc();">Add</button>
+	<button onclick="task(); display();">Add</button>
 </footer>
 </body>
 
