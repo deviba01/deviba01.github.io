@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <script type="text/javascript" src="mvc.js"></script>
+    <select id="list" size="10">
+    </select>
+    <button id="plusBtn">  +  </button>
+    <button id="minusBtn">  -  </button>
+
+
+    <script type="text/javascript">
+        var model = new ListModel(['PHP', 'JavaScript'])
+        var view = new ListView(model, {
+                'list' : document.getElementById('list'), 
+                'addButton' : document.getElementById('plusBtn'), 
+                'delButton' : document.getElementById('minusBtn')
+            })
+        var controller = new ListController(model, view);
+        view.show();
+        model.itemAdded.attach(function(args) {alert('hello');})
+    </script>    
+  </body>
+</html>

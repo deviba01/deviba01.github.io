@@ -19,8 +19,46 @@ localSave = function(){
 				//alert(JSON.stringify(res))
 				localStorage.setItem("todoDatabase", JSON.stringify(res))
 				}
+
 function addfunc() {
+            allprojects = document.querySelectorAll('#ProjectName');
+            for(i=0; i<allprojects.length; i++){
+            	if(allprojects[allprojects.length]==allprojects[i]){
             Newrow = document.createElement("TR");
+            newcol = document.createElement("TD");
+            prioritycol = document.createElement("TD");
+            task= document.getElementById('NewTask').value;
+            task.innerHtml;
+            //project = document.getElementById('ProjectName').value;
+            //project.innerHtml;
+            date = document.getElementById('DueDate').value;
+            date.innerHtml;
+            pri = document.getElementById('priority').value;
+            pri.innerHtml;
+            check = document.createElement("input");
+            check.type = "checkbox";
+            Newrow.appendChild(check);
+            x = document.createTextNode(task);
+            //y = document.createTextNode(project);
+            z = document.createTextNode(date);
+            v = document.createTextNode(pri)
+            Newrow.appendChild(y);
+            newcol.appendChild(x);
+            Newrow.appendChild(newcol); 
+            prioritycol.appendChild(z);            
+            Newrow.appendChild(prioritycol)
+            Newrow.appendChild(v);  
+                  
+            allprojects[i].appendChild(Newrow);
+            document.getElementById('NewTask').value="";
+            document.getElementById('ProjectName').value="";
+            document.getElementById('DueDate').value = "";
+            }
+            else{         	
+            	
+            Newrow = document.createElement("TR");
+            newcol = document.createElement("TD");
+            prioritycol = document.createElement("TD");
             task= document.getElementById('NewTask').value;
             task.innerHtml;
             project = document.getElementById('ProjectName').value;
@@ -35,26 +73,23 @@ function addfunc() {
             x = document.createTextNode(task);
             y = document.createTextNode(project);
             z = document.createTextNode(date);
-            w = document.createTextNode("---------");
-            b = document.createTextNode("---------");
-            c = document.createTextNode("---------");
             v = document.createTextNode(pri)
             Newrow.appendChild(y);
-            Newrow.appendChild(b);
-            Newrow.appendChild(x);
-            Newrow.appendChild(w);
-            Newrow.appendChild(z);
-            Newrow.appendChild(c);
-            Newrow.appendChild(v);
+            newcol.appendChild(x);
+            Newrow.appendChild(newcol); 
+            prioritycol.appendChild(z);            
+            Newrow.appendChild(prioritycol)
+            Newrow.appendChild(v);  
+                  
             document.getElementById("mytable").appendChild(Newrow);
             document.getElementById('NewTask').value="";
             document.getElementById('ProjectName').value="";
             document.getElementById('DueDate').value = "";
             
             
-    		check.onclick = doneTask;
-    		
+    		check.onclick = doneTask; 		
             localSave();
+       }
        }
 function savefunc(){
 			
