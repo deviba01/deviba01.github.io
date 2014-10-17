@@ -11,19 +11,31 @@ task = function(name,project,priority,date){
 			this.project = project;
 			this.priority = priority;
 			this.date = date;
-			
+			return name, project, priority, date
 			}
 
+if (document.getElementById('NewTask') != null) {
+    var ntask = document.getElementById("NewTask").value;
+    var pname = document.getElementById("ProjectName").value;
+    var pri = document.getElementById("priority").value;
+    var due = document.getElementById("DueDate").value;
+}
+else {
+    var ntask = null;
+    var pname = null;
+    var pri = null;
+    var due = null;
+}
 
 			
-newT = new task(document.getElementById('NewTask').value, document.getElementById('ProjectName').value, document.getElementById('priority').value, document.getElementById('DueDate').value  )
+newT = new task(ntask, pname, pri, due)
 		
 		
 TaskList = []
 TaskList.push(newT)
 localStorage.setItem("todoDatabase", JSON.stringify(TaskList))
 
-display();
+
 
 
 task.display = function(){
@@ -42,8 +54,8 @@ task.display = function(){
 					Subrow.appendChild(y)
 					Subrow.appendChild(z)
 					document.getElementById("mytable").appendChild(Subrow);
-					//allprojects[i].appendChild(Subrow)
-					//check.onclick = doneTask();
+					allprojects[i].appendChild(Subrow)
+					check.onclick = doneTask();
 				}else{
 				    Newrow = document.createElement("LI")
 				    check = document.createElement("input");
@@ -58,20 +70,20 @@ task.display = function(){
 					Newrow.appendChild(y)
 					Newrow.appendChild(z)
 					document.getElementById("mytable").appendChild(Newrow);
-					//check.onclick = doneTask();
+					check.onclick = doneTask();
 					}
 					}
 					}
 			document.getElementById('NewTask').value="";
-            document.getElementById('ProjectName').value="";
-            document.getElementById('DueDate').value = "";
+            		document.getElementById('ProjectName').value="";
+            		document.getElementById('DueDate').value = "";
     		
     		}
     		
 function savefunc(){
 			
 			TaskList = JSON.parse(localStorage.getItem("todoDatabase"));
-			//display(TaskList);
+			display(TaskList);
             
             	}          	
 				
@@ -104,11 +116,9 @@ function savefunc(){
 	<label for="DueDate"> Due Date:</label>
 	<input type="text" id="DueDate" value="">
 	<br>
-	<button onclick="task(); ">Add</button>
+	<button onclick="task.display(); ">Add</button>
 </footer>
 </body>
 
-    
-</html>
     
 </html>

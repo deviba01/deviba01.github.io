@@ -1,0 +1,115 @@
+<html>
+
+<script>
+doneTask = function(){
+		this.parentNode.className ="done"
+		localSave();
+		}
+localSave = function(){
+			res =[]
+			var i;
+			allEntries = document.querySelectorAll('tr')
+			for(i=0; i<allEntries.length;i++){
+			    if(allEntries[i].className != "done"){
+				res.push(allEntries[i].innerText);
+				}
+				}
+				console.log(res)
+				//alert(JSON.stringify(res))
+				localStorage.setItem("todoDatabase", JSON.stringify(res))
+				}
+function addfunc() {
+            Newrow = document.createElement("TR");
+            task= document.getElementById('NewTask').value;
+            task.innerHtml;
+            project = document.getElementById('ProjectName').value;
+            project.innerHtml;
+            date = document.getElementById('DueDate').value;
+            date.innerHtml;
+            pri = document.getElementById('priority').value;
+            pri.innerHtml;
+            check = document.createElement("input");
+            check.type = "checkbox";
+            Newrow.appendChild(check);
+            x = document.createTextNode(task);
+            y = document.createTextNode(project);
+            z = document.createTextNode(date);
+            w = document.createTextNode("---------");
+            b = document.createTextNode("---------");
+            c = document.createTextNode("---------");
+            v = document.createTextNode(pri)
+            Newrow.appendChild(y);
+            Newrow.appendChild(b);
+            Newrow.appendChild(x);
+            Newrow.appendChild(w);
+            Newrow.appendChild(z);
+            Newrow.appendChild(c);
+            Newrow.appendChild(v);
+            document.getElementById("mytable").appendChild(Newrow);
+            document.getElementById('NewTask').value="";
+            document.getElementById('ProjectName').value="";
+            document.getElementById('DueDate').value = "";
+            
+            
+    		check.onclick = doneTask;
+    		
+            localSave();
+       }
+function savefunc(){
+			
+			w = JSON.parse(localStorage.getItem("todoDatabase"));
+			
+			
+			for(var i = 0; i< w.length;i++){
+				var todoItem = w[i];
+				Newrow = document.createElement("TR");
+            	task= todoItem;
+            	task.innerHtml;
+            	check = document.createElement("input");
+            	check.type = "checkbox";
+            	Newrow.appendChild(check);
+            	
+            	x = document.createTextNode(task);
+            	Newrow.appendChild(x);
+            	
+            	document.getElementById("mytable").appendChild(Newrow);
+            	check.onclick=doneTask;
+                       	}
+            
+            	}          	
+				
+			
+
+
+</script>
+
+<link rel ="stylesheet" href="interactivetodo.css" type="text/css" />
+<body onload ="savefunc();">
+<h1>To Do List</h1>
+
+
+<section>
+
+    <table id = "mytable">
+    </table>
+    </section>
+
+<footer>
+	<label for= "ProjectName"> Project Name:</label>
+	<input type="text" id ="ProjectName" value ="">
+	<label for="NewTask"> New Task:</label>
+	<input type="text" id="NewTask" value="">
+	<select id ="priority">
+	<option>High</option>
+	<option>Medium</option>
+	<option>Low</option>
+	</select>
+	<label for="DueDate"> Due Date:</label>
+	<input type="text" id="DueDate" value="">
+	<br>
+	<button onclick="addfunc();">Add</button>
+</footer>
+</body>
+
+    
+</html>
