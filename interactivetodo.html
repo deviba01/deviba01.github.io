@@ -7,57 +7,71 @@ doneTask = function(){
 		}
 		
 task = function(name,project,priority,date){
-			this.TaskName = name;
-			this.ProjectName = project;
+			this.name = name;
+			this.project = project;
 			this.priority = priority;
-			this.DueDate = date;
-			}
-newT = new Task(name, project, priority, date)
-			document.getElementById('NewTask').value = name
-			document.getElementById('ProjectName').value = project
-			document.getElementById('DueDate').value = date
-			document.getElementById('priority').value = priority
+			this.date = date;
 			
+			}
+
+
+			
+newT = new task(document.getElementById('NewTask').value, document.getElementById('ProjectName').value, document.getElementById('priority').value, document.getElementById('DueDate').value  )
+		
+		
 TaskList = []
 TaskList.push(newT)
 localStorage.setItem("todoDatabase", JSON.stringify(TaskList))
 
-display = function(newT){
+display();
+
+
+task.display = function(){
 			allprojects = document.querySelectorAll('#ProjectName')
 			for(i=0; i<TaskList.length; i++){
-				for(m=0; m<allprojects.lenght;i++){
+				for(m=0; m<allprojects.length;i++){
 				if(TaskList[i].project == allprojects[i]){
 				    Subrow = document.createElement("LI")
 				    check = document.createElement("input");
 				    check.type = "checkbox";
-				    subrow.appendChild(check);
-					Subrow.appendChild(Tasklist[i].name)
-					Subrow.appendChild(Tasklist[i].date)
-					Subrow.appendChild(Tasklist[i].priority)
-					allprojects[i].appendChild(Subrow)
+				    x = document.createTextNode(TaskList[i].name)
+				    y = document.createTextNode(TaskList[i].date)
+				    z = document.createTextNode(TaskList[i].priority)
+				    Subrow.appendChild(check);
+					Subrow.appendChild(x)
+					Subrow.appendChild(y)
+					Subrow.appendChild(z)
+					document.getElementById("mytable").appendChild(Subrow);
+					//allprojects[i].appendChild(Subrow)
+					//check.onclick = doneTask();
 				}else{
 				    Newrow = document.createElement("LI")
 				    check = document.createElement("input");
 				    check.type = "checkbox";
+				    w = document.createTextNode(TaskList[i].project)
+				    x = document.createTextNode(TaskList[i].name)
+				    y = document.createTextNode(TaskList[i].date)
+				    z = document.createTextNode(TaskList[i].priority)
 				    Newrow.appendChild(check);
-				    Newrow.appendChild(Tasklist[i].name)
-					Newrow.appendChild(Tasklist[i].name)
-					Newrow.appendChild(Tasklist[i].date)
-					Newrow.appendChild(Tasklist[i].priority)
+				    Newrow.appendChild(w)
+					Newrow.appendChild(x)
+					Newrow.appendChild(y)
+					Newrow.appendChild(z)
 					document.getElementById("mytable").appendChild(Newrow);
+					//check.onclick = doneTask();
 					}
 					}
 					}
 			document.getElementById('NewTask').value="";
             document.getElementById('ProjectName').value="";
             document.getElementById('DueDate').value = "";
-    		check.onclick = doneTask;
+    		
     		}
     		
 function savefunc(){
 			
 			TaskList = JSON.parse(localStorage.getItem("todoDatabase"));
-			display(TaskList);
+			//display(TaskList);
             
             	}          	
 				
@@ -67,7 +81,7 @@ function savefunc(){
 </script>
 
 <link rel ="stylesheet" href="interactivetodo.css" type="text/css" />
-<body onload ="savefunc();">
+<body >
 <h1>To Do List</h1>
 
 
@@ -90,7 +104,7 @@ function savefunc(){
 	<label for="DueDate"> Due Date:</label>
 	<input type="text" id="DueDate" value="">
 	<br>
-	<button onclick="task(); display();">Add</button>
+	<button onclick="task(); ">Add</button>
 </footer>
 </body>
 
