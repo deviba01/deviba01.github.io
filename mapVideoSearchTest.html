@@ -63,7 +63,7 @@
         // Helper function to display JavaScript value on HTML page.
         var map;
         var geocoder;
-        function showResponse(stTitle) {
+        function showResponse(stTitle, stVideoId) {
             console.log("hello");
             console.log(stTitle);
             console.log(stVideoId);
@@ -139,8 +139,8 @@
             //console.log(stVideoId);
               }
             //console.log(stVideoId);
-            showResponse(stTitle);
-            showResponse(stVideoId);
+            showResponse(stTitle, stVideoId);
+           
         }
         function codeAddress() {
             var address = document.getElementById('address').value;
