@@ -63,13 +63,20 @@
         // Helper function to display JavaScript value on HTML page.
         var map;
         var geocoder;
-        function showResponse(stTitle) {
+        function showResponse(stTitle, stVideoId) {
             console.log("hello");
             console.log(stTitle);
+            console.log(stVideoId);
         //var responseString = JSON.stringify(stTitle, '', 2);
         //console.log(stTitle.length);
             for (var i=0; i<stTitle.length;i++){
                 document.getElementById('response').innerHTML += stTitle[i]+"\n"+"\n";
+                var str = "Watch Now!";
+                var result = str.link("https://www.youtube.com/watch?v=" + stVideoId[i])
+                document.getElementById('response').innerHTML += result+"\n"+"\n";
+                //document.getElementById('response').innerHTML += "https://www.youtube.com/watch?v=";
+                //document.getElementById('response').innerHTML += stVideoId[i]+"\n"+"\n";
+               
 
         }
         //document.getElementById('response').innerHTML += responseString;
@@ -99,6 +106,7 @@
             var requestOptions = {
                 part:'snippet',
                 q:vquery
+                q:$clientId
 
             };*/
            // console.log(requestOptions);prints good
@@ -112,10 +120,10 @@
                 q:qVar
 
             });
-
+          
         // Send the request to the API server,
         // and invoke onSearchRepsonse() with the response.
-            request.execute(onSearchResponse);
+           request.execute(onSearchResponse);
         }
         // Called automatically with the response of the YouTube API request.
         function onSearchResponse(response) {
@@ -136,7 +144,8 @@
             //console.log(stVideoId);
               }
             //console.log(stVideoId);
-            showResponse(stTitle);
+            showResponse(stTitle, stVideoId);
+           
         }
         function codeAddress() {
             var address = document.getElementById('address').value;
