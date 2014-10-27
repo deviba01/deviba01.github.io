@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	#map-canvas{
+		height: 500px;
+		}
+	</style>
+	<title></title>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC2Xz7SFE49NjB3PTXjGUjTK8MqAFBwBI&libraries=places,weather&sensor=false">
+	</script>
+	<script type="text/javascript">
+	var map;
+	var service;
+	function handleSearchResult(results, status){// api has them
+		//console.log(results);
+		for (var i=0; i<results.length; i++){
+			var marker = new google.maps.Marker({
+				position:results[i].geometry.location,
+				map:map,
+				//icon:results[i].icon
+				icon:'images/McDonaldsII.jpg'
+			});
+
+		}
+
+	}
+	function performSearch(){
+		var request={
+			bounds:map.getBounds(),
+			name:"McDonald's"
+			//name:"Walmart"
+
+		}
+		service.nearbySearch(request, handleSearchResult);// callback function is a handleSearchResult()
+
+
+	}
+	function initialise(location){
+		console.log(location);
+		//console.log("hello");
+		var currentLocation=new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+		var mapOptions = {
+	  		center:currentLocation,
+	  		zoom: 12,
+	  		mapTypeId: google.maps.MapTypeId.ROADMAP
+	  		};
+			map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);	//map-canvas html div element, mapOtopions object that tells google how to display map
+			var marker= new google.maps.Marker({
+				position: currentLocation,
+				map:map //reference to variable map that contains google maps Map google.maps.Map
+
+			});
+			service = new google.maps.places.PlacesService(map);// for performSearch function
+			google.maps.event.addListenerOnce(map,'bounds_changed',performSearch);// this ensures we wait until the map bounds are initialised before we perform the search
+			$('#refresh').click(performSearch);// redo searchwhen ther refresh button is clicked
+			var circleOptions={
+				strokeColor:"#0000FF",
+				strokeOpacity:0.8,
+				strokeWeight:1.5,
+				fillColor: "#0000FF",
+				map:map,
+				center:currentLocation,
+				radius:2000
+
+			};
+			var circle=new google.maps.Circle(circleOptions);
+
+			var trafficLayer=new google.maps.TrafficLayer();
+			$('#toggle_traffic').click(function(){
+				if (trafficLayer.getMap()){
+					trafficLayer.setMap(null);
+				}
+				else{
+					trafficLayer.setMap(map);
+				}
+			});
+			var weatherLayer = new google.maps.weather.WeatherLayer({
+				temperatureUnits: google.maps.weather.TemperatureUnit.CELSIUS
+
+			});
+			var cloudLayer=new google.maps.weather.CloudLayer();
+			$("#toggle_weather").click(function(){
+				if(weatherLayer.getMap()|| cloudLayer.getMap()){
+					weatherLayer.setMap(null);
+					cloudLayer.setMap(null);
+				}
+				else{
+					weatherLayer.setMap(map);
+					weatherLayer.setMap(map);
+				}
+			});
+
+	}
+	$(document).ready(function(){
+		navigator.geolocation.getCurrentPosition(initialise);
+
+	});
+	</script>
+
+</head>
+<body>
+	<div id="map-canvas"></div>
+	<button id="refresh">Refresh</button>
+	<button id="toggle_traffic">Traffic</button>
+	<button id="toggle_weather">Weather</button>
+</body>
+
+</html>
