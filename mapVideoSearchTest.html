@@ -99,6 +99,7 @@
             var requestOptions = {
                 part:'snippet',
                 q:vquery
+                q:id
 
             };*/
            // console.log(requestOptions);prints good
@@ -136,7 +137,7 @@
             //console.log(stVideoId);
               }
             //console.log(stVideoId);
-            showResponse(stTitle, stVideoId);
+            showResponse(stTitle);
         }
         function codeAddress() {
             var address = document.getElementById('address').value;
