@@ -115,7 +115,7 @@
             //possibly does this instead of request.execute(onSearchResponse)
             request.execute(function(response) {
             var str = JSON.stringify(response.result);
-            $('#map-canvas').html('<pre>' + str + '</pre>');
+            $('response').html('<pre>' + str + '</pre>');
             });
         // Send the request to the API server,
         // and invoke onSearchRepsonse() with the response.
