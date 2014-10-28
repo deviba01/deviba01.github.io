@@ -146,7 +146,7 @@ function showResponse(stTitle, stVideoId) {
             console.log(videoNum);
             var request = gapi.client.youtube.search.list({
                 type:'video',
-                maxResults:8,
+                maxResults:videoNum,
                 part:'snippet',
                 q:qVar
 
