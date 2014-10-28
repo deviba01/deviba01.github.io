@@ -12,6 +12,9 @@
 
 
         }
+        #address{
+            width:190px;
+        }
 	    #map-canvas{
             border: 5px solid black;
     		height: 550px;
@@ -22,25 +25,48 @@
             float:left;
 		}
         #response{
-            border: 5px solid black;
-            height: 550px;
+            border: 5px solid #999;
+            height: 480px;
             /*height:250px;*/
-            width: 580px;
+            width: 530px;
             margin: 0px;
-            padding: 0px;
+            padding: 5px;
             float: right;
             background-color: #99CCFF;
             overflow: scroll;
+            position: absolute;
         }
-	  #panel {
+        #display{
+            border: 5px solid black;
+            height: 550px;
+            float:right;
+            width: 580px;
+            background-color:#99FFCC;
+        }
+	  #panel1 {
             position: absolute;
             top: 5px;
-            left:30%;
-            margin-left: -180px;
+            /*left:30%;*/
+            margin-left:300px;
             z-index: 5;
             background-color: #fff;
             padding: 5px;
             border: 1px solid #999;
+            width:150px;
+      }
+      #panel2 {
+            position: absolute;
+            top: 5px;
+            /*left:30%;*/
+            margin-left:5px;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            width:275px;
+      }
+      #videoNum{
+        width:110px;
       }
 	</style>
 	<title>mapVideoSearch</title>
@@ -63,7 +89,7 @@
         // Helper function to display JavaScript value on HTML page.
         var map;
         var geocoder;
-        function showResponse(stTitle, stVideoId) {
+function showResponse(stTitle, stVideoId) {
             console.log("hello");
             console.log(stTitle);
             console.log(stVideoId);
@@ -106,7 +132,6 @@
             var requestOptions = {
                 part:'snippet',
                 q:vquery
-                q:$clientId
 
             };*/
            // console.log(requestOptions);prints good
@@ -115,15 +140,19 @@
         // Use the JavaScript client library to create a search.list() API call.
             var qVar = document.getElementById("address").value;
             //console.log(qVar); prints correct
+            var videoNum=document.getElementById("videoNum").value;
+            console.log(videoNum);
             var request = gapi.client.youtube.search.list({
+                type:'video',
+                maxResults:8,
                 part:'snippet',
                 q:qVar
 
             });
-          
+
         // Send the request to the API server,
         // and invoke onSearchRepsonse() with the response.
-           request.execute(onSearchResponse);
+            request.execute(onSearchResponse);
         }
         // Called automatically with the response of the YouTube API request.
         function onSearchResponse(response) {
@@ -143,9 +172,8 @@
             stVideoId.push(item.id.videoId);
             //console.log(stVideoId);
               }
-            //console.log(stVideoId);
+            console.log(stVideoId);
             showResponse(stTitle, stVideoId);
-           
         }
         function codeAddress() {
             var address = document.getElementById('address').value;
@@ -206,11 +234,17 @@
         <body>
         <div id="bodyDOM">
     	<div id="map-canvas"></div>
-		<div id="panel">
-      	<input id="address" type="textbox" value="Decorah,Iowa">
+		<div id="panel2">
+      	<input id="address" type="textbox" placeholder="Enter city/state/country Name">
       	<input type="button" value="Geocode" onclick="codeAddress()">
+        </div>
+        <div id="panel1">
+        <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
     	</div>
+        <div id="display">
+        <h3 style="color:purple;float:center;display:inline-block;">Here are the videos with the value you entered</h3>
         <pre id="response"></pre>
+        </div>
         </div>
         
     </body>
