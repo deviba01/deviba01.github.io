@@ -90,6 +90,7 @@
         var map;
         var geocoder;
 function showResponse(stTitle, stVideoId) {
+			document.getElementById('display').innerHTML = "inline";
 			document.getElementById('response').innerHTML ="";
             console.log("hello");
             console.log(stTitle);
@@ -195,6 +196,7 @@ function showResponse(stTitle, stVideoId) {
 
         }
         function initialise(location){
+            document.getElementById('display').style.display = "none";
             console.log(location);
             //console.log("hello");
             var currentLocation=new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
