@@ -15,11 +15,11 @@
         #address{
             width:190px;
         }
-	    #map-canvas{
+	   	    #map-canvas{
             border: 5px solid black;
     		height: 550px;
     		/*height:250px;*/
-            width: 580px;
+            width: 770px;
             margin: 0px;
             padding: 10px;
             float:left;
@@ -43,27 +43,27 @@
             width: 580px;
             background-color:#99FFCC;
         }
-	  #panel1 {
+	  #panel2 {
             position: absolute;
             top: 5px;
             /*left:30%;*/
-            margin-left:300px;
+            margin-left:175px;
             z-index: 5;
-            background-color: #fff;
+            background-color: #000000;
             padding: 5px;
             border: 1px solid #999;
-            width:150px;
+            width:275px;
       }
-      #panel2 {
+      #panel1 {
             position: absolute;
             top: 5px;
             /*left:30%;*/
             margin-left:5px;
             z-index: 5;
-            background-color: #fff;
+            background-color: #000000;
             padding: 5px;
             border: 1px solid #999;
-            width:275px;
+            width:150px;
       }
       #videoNum{
         width:110px;
@@ -90,6 +90,7 @@
         var map;
         var geocoder;
 function showResponse(stTitle, stVideoId) {
+			document.getElementById('response').innerHTML ="";
             console.log("hello");
             console.log(stTitle);
             console.log(stVideoId);
@@ -138,13 +139,14 @@ function showResponse(stTitle, stVideoId) {
 
 
         // Use the JavaScript client library to create a search.list() API call.
+            
             var qVar = document.getElementById("address").value;
             //console.log(qVar); prints correct
             var videoNum=document.getElementById("videoNum").value;
             console.log(videoNum);
             var request = gapi.client.youtube.search.list({
                 type:'video',
-                maxResults:8,
+                maxResults:videoNum,
                 part:'snippet',
                 q:qVar
 
@@ -190,10 +192,12 @@ function showResponse(stTitle, stVideoId) {
                 }
 
             });
+           
             onClientLoad();
 
         }
         function initialise(location){
+            
             console.log(location);
             //console.log("hello");
             var currentLocation=new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
@@ -234,13 +238,13 @@ function showResponse(stTitle, stVideoId) {
         <body>
         <div id="bodyDOM">
     	<div id="map-canvas"></div>
+    	<div id="panel1">
+        <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
+    	</div>
 		<div id="panel2">
       	<input id="address" type="textbox" placeholder="Enter city/state/country Name">
       	<input type="button" value="Geocode" onclick="codeAddress()">
         </div>
-        <div id="panel1">
-        <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
-    	</div>
         <div id="display">
         <h3 style="color:purple;float:center;display:inline-block;">Here are the videos with the value you entered</h3>
         <pre id="response"></pre>
