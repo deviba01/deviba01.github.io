@@ -139,7 +139,7 @@ function showResponse(stTitle, stVideoId) {
 
 
         // Use the JavaScript client library to create a search.list() API call.
-            document.getElementById('display').innerHTML = "inline";
+            
             var qVar = document.getElementById("address").value;
             //console.log(qVar); prints correct
             var videoNum=document.getElementById("videoNum").value;
@@ -192,6 +192,7 @@ function showResponse(stTitle, stVideoId) {
                 }
 
             });
+            document.getElementById('display').innerHTML = "inline";
             onClientLoad();
 
         }
