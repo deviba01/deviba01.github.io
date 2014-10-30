@@ -114,7 +114,7 @@ function showResponse(stTitle, stVideoId,dateTime, thumbnailsURL) {
             //console.log(httpGet);
             //console.log("hello");
             //console.log(thumbnailsURL);
-            document.getElementById('address').innerHTML ="";
+            document.getElementById('response').innerHTML ="";
           
            // console.log("hello");
            // console.log(stTitle);
@@ -134,7 +134,7 @@ function showResponse(stTitle, stVideoId,dateTime, thumbnailsURL) {
                 var str = "Watch Now";
                 var result = str.link("https://www.youtube.com/watch?v=" + stVideoId[i]);
                 document.getElementById('response').innerHTML += result+"\n"+"\n"; 
-                document.getElementById('address').value.innerHTML = "Enter city/state/country Name";
+                document.getElementById('address').innerHTML = "";
                 
                 //document.getElementById('response').innerHTML += "https://www.youtube.com/watch?v=";
                 //document.getElementById('response').innerHTML += stVideoId[i]+"\n"+"\n";
